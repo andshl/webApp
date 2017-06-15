@@ -1,22 +1,36 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Entity
+@DiscriminatorValue(value = "Student")
+@Table(name = "STUDENTS")
 public class Student extends Person {
-    private Integer groupId;
+    @Column(name = "GROUP_NUMBER")
+    private Integer groupNumber;
+
+    @Column(name = "FACULTITY")
+    private Integer facultity;
+
+    @Column(name = "DATE_OF_ENROLLMENT")
     private Date dateOfEnrollment;
+
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy");
 
     public Student() {}
 
-    public Integer getGroupId() {
-        return groupId;
+    public Integer getGroupNumber() {
+        return groupNumber;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setGroupNumber(Integer groupNumber) {
+        this.groupNumber = groupNumber;
     }
 
     public Date getDateOfEnrollment() {
@@ -33,7 +47,15 @@ public class Student extends Person {
                 this.getSecondName() + " " +
                 this.getFirstName() + " " +
                 this.getLastName() + " from " +
-                this.groupId + " group enrolled on " +
+                this.groupNumber + " group enrolled on " +
                 simpleDateFormat.format(this.dateOfEnrollment) + "\r\n";
+    }
+
+    public Integer getFacultity() {
+        return facultity;
+    }
+
+    public void setFacultity(Integer facultity) {
+        this.facultity = facultity;
     }
 }

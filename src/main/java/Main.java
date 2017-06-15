@@ -9,13 +9,13 @@ public class Main {
         Group group = new Group();
 
         student.setFirstName("Ivan");
-        student.setSecondName("Ivanov");
-        student.setLastName("Ivanovich");
-        student.setGroupId(121);
+        student.setSecondName("Ivanovich");
+        student.setLastName("Ivanov");
+        student.setGroupNumber(121);
         student.setDateOfEnrollment("16.08.1997");
 
         group.setFacultity("CSIT");
-        group.setId(121);
+        group.setNumber(121);
         group.addStudent(student);
 
         System.out.println(group);

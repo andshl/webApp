@@ -1,19 +1,33 @@
 package model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "GROUPS")
 public class Group {
-    private Integer id;
+    @Id
+    @Column(name = "NUMBER")
+    private Integer number;
+
+    @Id
+    @Column(name = "FACULTITY")
     private String facultity;
+
+    @OneToMany
+    @JoinColumns({
+            @JoinColumn(name = "FACULTITY", referencedColumnName = "FACULTITY"),
+            @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "NUMBER")
+    })
     private List<Student> students = new ArrayList<Student>();
 
-    public Integer getId() {
-        return id;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public String getFacultity() {
@@ -39,7 +53,7 @@ public class Group {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Facultity: ").append(facultity).append(". Group with id: ").append(id).append(":\r\n");
+        sb.append("Facultity: ").append(facultity).append(". Group with number: ").append(number).append(":\r\n");
         for (Student student : students)
             sb.append(student);
         sb.append("\r\n");
