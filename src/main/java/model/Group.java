@@ -1,12 +1,17 @@
 package model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "GROUPS")
-public class Group {
+public class Group implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "NUMBER")
     private Integer number;
@@ -21,6 +26,9 @@ public class Group {
             @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "NUMBER")
     })
     private List<Student> students = new ArrayList<Student>();
+
+    @Column(name = "DATE_OF_FIRST_ENROLLMENT")
+    private Date dateOfFirstEnrollment;
 
     public Integer getNumber() {
         return number;
@@ -48,6 +56,14 @@ public class Group {
 
     public Student getStudent(int index) {
         return students.get(index);
+    }
+
+    public Date getDateOfFirstEnrollment() {
+        return dateOfFirstEnrollment;
+    }
+
+    public void setDateOfFirstEnrollment(Date dateOfFirstEnrollment) {
+        this.dateOfFirstEnrollment = dateOfFirstEnrollment;
     }
 
     @Override
