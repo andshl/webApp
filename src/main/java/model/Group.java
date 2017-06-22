@@ -1,34 +1,37 @@
 package model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "GROUPS")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Group implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "NUMBER")
-    private Integer number;
+    private Integer number = null;
 
     @Id
     @Column(name = "FACULTITY")
-    private String facultity;
+    private String facultity = null;
 
     @OneToMany
     @JoinColumns({
             @JoinColumn(name = "FACULTITY", referencedColumnName = "FACULTITY"),
             @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "NUMBER")
     })
-    private List<Student> students = new ArrayList<Student>();
+    private List<Student> students = new ArrayList<Student>(null);
 
     @Column(name = "DATE_OF_FIRST_ENROLLMENT")
-    private Date dateOfFirstEnrollment;
+    private String dateOfFirstEnrollment = null;
 
     public Integer getNumber() {
         return number;
@@ -58,11 +61,11 @@ public class Group implements Serializable {
         return students.get(index);
     }
 
-    public Date getDateOfFirstEnrollment() {
+    public String getDateOfFirstEnrollment() {
         return dateOfFirstEnrollment;
     }
 
-    public void setDateOfFirstEnrollment(Date dateOfFirstEnrollment) {
+    public void setDateOfFirstEnrollment(String dateOfFirstEnrollment) {
         this.dateOfFirstEnrollment = dateOfFirstEnrollment;
     }
 

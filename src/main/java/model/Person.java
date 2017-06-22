@@ -1,25 +1,29 @@
 package model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "PERSON_TYPE")
 @Table(name = "PERSONS")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Person {
     @Id
     @Column(name = "ID")
     @GeneratedValue
-    private Integer id;
+    private Integer id = null;
 
     @Column(name = "FIRST_NAME")
-    private String firstName; //Имя
+    private String firstName = null; //Имя
 
     @Column(name = "SECOND_NAME")
-    private String secondName; //Отчество
+    private String secondName = null; //Отчество
 
     @Column(name = "LAST_NAME")
-    private String lastName; //Фамилия
+    private String lastName = null; //Фамилия
 
     public Person() {}
 

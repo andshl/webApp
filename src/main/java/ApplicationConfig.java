@@ -21,7 +21,7 @@ import javax.sql.DataSource;
  * @since 16.06.2017
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "repository")
+@EnableJpaRepositories(basePackages = "repository", repositoryImplementationPostfix = "Impl")
 @EnableTransactionManagement
 public class ApplicationConfig {
 

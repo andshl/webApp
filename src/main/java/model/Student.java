@@ -1,27 +1,26 @@
 package model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Entity
 @DiscriminatorValue(value = "Student")
 @Table(name = "STUDENTS")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Student extends Person {
     @Column(name = "GROUP_NUMBER")
-    private Integer groupNumber;
+    private Integer groupNumber = null;
 
     @Column(name = "FACULTITY")
-    private Integer facultity;
+    private String facultity = null;
 
     @Column(name = "DATE_OF_ENROLLMENT")
-    private Date dateOfEnrollment;
-
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy");
+    private String dateOfEnrollment = null;
 
     public Student() {}
 
@@ -33,12 +32,12 @@ public class Student extends Person {
         this.groupNumber = groupNumber;
     }
 
-    public Date getDateOfEnrollment() {
+    public String getDateOfEnrollment() {
         return dateOfEnrollment;
     }
 
-    public void setDateOfEnrollment(String date) throws ParseException {
-        this.dateOfEnrollment = simpleDateFormat.parse(date);
+    public void setDateOfEnrollment(String date) {
+        this.dateOfEnrollment = date;
     }
 
     @Override
@@ -48,14 +47,14 @@ public class Student extends Person {
                 this.getFirstName() + " " +
                 this.getLastName() + " from " +
                 this.groupNumber + " group enrolled on " +
-                simpleDateFormat.format(this.dateOfEnrollment) + "\r\n";
+                this.dateOfEnrollment + "\r\n";
     }
 
-    public Integer getFacultity() {
+    public String getFacultity() {
         return facultity;
     }
 
-    public void setFacultity(Integer facultity) {
+    public void setFacultity(String facultity) {
         this.facultity = facultity;
     }
 }

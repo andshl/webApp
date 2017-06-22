@@ -102,6 +102,12 @@
                     <webApp>
                         <contextPath>/</contextPath>
                     </webApp>
+                    <httpConnector>
+                        <port>8888</port>
+                    </httpConnector>
+                    <stopPort>8889</stopPort>
+                    <stopKey>foo</stopKey>
+                    <stopWait>3</stopWait>
                 </configuration>
             </plugin>
         </plugins>

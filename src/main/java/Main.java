@@ -13,6 +13,7 @@ public class Main {
         student.setLastName("Ivanov");
         student.setGroupNumber(121);
         student.setDateOfEnrollment("16.08.1997");
+        student.setFacultity("CSIT");
 
         group.setFacultity("CSIT");
         group.setNumber(121);
