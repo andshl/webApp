@@ -80,7 +80,7 @@ public class ApplicationConfig {
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver resourceViewResolverlver = new InternalResourceViewResolver();
         resourceViewResolverlver.setViewClass(org.springframework.web.servlet.view.JstlView.class);
-        resourceViewResolverlver.setPrefix("/src/main/webapp/WEB-INF/");
+        resourceViewResolverlver.setPrefix("/WEB-INF/");
         resourceViewResolverlver.setSuffix(".jsp");
 
         return resourceViewResolverlver;
