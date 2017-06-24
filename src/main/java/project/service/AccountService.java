@@ -1,10 +1,10 @@
-package service;
+package project.service;
 
-import model.Person;
+import project.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import repository.PersonRepository;
+import project.repository.PersonRepository;
 
 /**
  * @author VYZH

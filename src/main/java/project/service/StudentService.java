@@ -1,10 +1,10 @@
-package service;
+package project.service;
 
-import model.Student;
+import project.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.StudentRepository;
+import project.repository.StudentRepository;
 
 import java.util.List;
 
@@ -31,8 +31,6 @@ public class StudentService {
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setSecondName(student.getSecondName());
-        existingStudent.setFacultity(student.getFacultity());
-        existingStudent.setGroupNumber(student.getGroupNumber());
         existingStudent.setDateOfEnrollment(student.getDateOfEnrollment());
 
         studentRepository.save(existingStudent);

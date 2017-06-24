@@ -1,4 +1,4 @@
-package model;
+package project.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,8 +13,11 @@ import javax.persistence.*;
 public class Person {
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id = null;
+
+    @Column(name = "PERSON_TYPE")
+    private String personType;
 
     @Column(name = "FIRST_NAME")
     private String firstName = null; //Имя
@@ -57,5 +60,13 @@ public class Person {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(String personType) {
+        this.personType = personType;
     }
 }

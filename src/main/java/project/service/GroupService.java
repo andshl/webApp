@@ -1,7 +1,7 @@
-package service;
+package project.service;
 
-import model.Group;
-import model.Student;
+import project.model.Group;
+import project.model.Student;
 import org.springframework.stereotype.Service;
 
 /**

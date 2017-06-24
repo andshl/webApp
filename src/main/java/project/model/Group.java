@@ -1,4 +1,4 @@
-package model;
+package project.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -16,22 +16,18 @@ public class Group implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Integer id;
+
     @Column(name = "NUMBER")
     private Integer number = null;
 
-    @Id
     @Column(name = "FACULTITY")
     private String facultity = null;
 
-    @OneToMany
-    @JoinColumns({
-            @JoinColumn(name = "FACULTITY", referencedColumnName = "FACULTITY"),
-            @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "NUMBER")
-    })
-    private List<Student> students = new ArrayList<Student>(null);
-
-    @Column(name = "DATE_OF_FIRST_ENROLLMENT")
-    private String dateOfFirstEnrollment = null;
+    @OneToMany(mappedBy = "group", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Student> students = new ArrayList<Student>();
 
     public Integer getNumber() {
         return number;
@@ -59,14 +55,6 @@ public class Group implements Serializable {
 
     public Student getStudent(int index) {
         return students.get(index);
-    }
-
-    public String getDateOfFirstEnrollment() {
-        return dateOfFirstEnrollment;
-    }
-
-    public void setDateOfFirstEnrollment(String dateOfFirstEnrollment) {
-        this.dateOfFirstEnrollment = dateOfFirstEnrollment;
     }
 
     @Override

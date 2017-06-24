@@ -1,8 +1,8 @@
-package controller;
+package project.controller;
 
-import model.Group;
-import model.Person;
-import model.Student;
+import project.model.Group;
+import project.model.Person;
+import project.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import service.AccountService;
-import service.GroupService;
+import project.service.AccountService;
+import project.service.GroupService;
 
 /**
  * @author VYZH
