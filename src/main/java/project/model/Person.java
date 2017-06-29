@@ -1,32 +1,32 @@
 package project.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "PERSON_TYPE")
 @Table(name = "PERSONS")
-@OnDelete(action = OnDeleteAction.CASCADE)
-public class Person {
+public class Person implements Serializable{
+
+    private static final long serialVersionUID = 123L;
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id = null;
+    private Integer id;
 
     @Column(name = "PERSON_TYPE")
     private String personType;
 
     @Column(name = "FIRST_NAME")
-    private String firstName = null; //Имя
+    private String firstName; //Имя
 
     @Column(name = "SECOND_NAME")
-    private String secondName = null; //Отчество
+    private String secondName; //Отчество
 
     @Column(name = "LAST_NAME")
-    private String lastName = null; //Фамилия
+    private String lastName; //Фамилия
 
     public Person() {}
 

@@ -1,17 +1,19 @@
 package project.controller;
 
-import project.model.Group;
-import project.model.Person;
-import project.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import project.model.Group;
+import project.model.Student;
 import project.service.AccountService;
 import project.service.GroupService;
+import project.service.StudentService;
+
+import java.util.List;
 
 /**
  * @author VYZH
@@ -26,22 +28,37 @@ public class IndexController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping("/")
+    @Autowired
+    private StudentService studentService;
+
+//    @RequestMapping(value = "/login" , method = RequestMethod.GET)
+//    public ModelAndView login(){
+//        ModelAndView mdv = new ModelAndView();
+//        mdv.setViewName("login");
+//        return mdv;
+//    }
+
+    @RequestMapping({"/", "/index"})
     public String index() {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @RequestMapping("/home")
+    public ModelAndView showHome() {
+        ModelAndView mdv = new ModelAndView();
+        List<Student> students = studentService.getAllStudents();
+        mdv.addObject("students", students);
+        mdv.setViewName("home");
+        return mdv;
     }
 
-    @PostMapping("/login")
-    public ModelAndView doLogin(@RequestParam String lastName, @RequestParam String password) {
-        Person person = accountService.login(lastName, password);
-        return new ModelAndView("home")
-                .addObject("person", person);
+    @RequestMapping("/delete/{studentId}")
+    public String deleteEntity(@PathVariable("studentId") Integer studentId) {
+        Student student = studentService.getSingleStudentById(studentId);
+        studentService.removeStudent(student);
+        return "home";
     }
+
 
     @PostMapping("/add_student")
     public String addStudent(@RequestParam Group group, @RequestParam Student student) {

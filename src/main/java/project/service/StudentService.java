@@ -1,10 +1,10 @@
 package project.service;
 
-import project.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.repository.StudentRepository;
+import project.model.Student;
+import project.repository.StudentDAO;
 
 import java.util.List;
 
@@ -12,27 +12,35 @@ import java.util.List;
 public class StudentService {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentDAO studentDAO;
 
     @Transactional
-    public void removeStudent(Integer id) {
-      studentRepository.delete(id);
+    public void removeStudent(Student student) {
+        studentDAO.remove(student);
     }
 
     @Transactional
     public List<Student> getAllStudents() {
-        return (List<Student>) studentRepository.findAll();
+        return studentDAO.getAll();
     }
 
     @Transactional
     public void editStudent(Student student) {
-        Student existingStudent = studentRepository.findOne(student.getId());
+        Student existingStudent = studentDAO.getOne(student.getId());
 
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setSecondName(student.getSecondName());
         existingStudent.setDateOfEnrollment(student.getDateOfEnrollment());
 
-        studentRepository.save(existingStudent);
+        System.out.println("Modified student: " + existingStudent);
+
+        studentDAO.persist(existingStudent);
+    }
+
+    @Transactional
+    public Student getSingleStudentById(Integer id) {
+        System.out.println(studentDAO.getOne(id));
+        return studentDAO.getOne(id);
     }
 }

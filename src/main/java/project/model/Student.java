@@ -4,15 +4,18 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @DiscriminatorValue(value = "Student")
 @Table(name = "STUDENTS")
 @OnDelete(action = OnDeleteAction.CASCADE)
-public class Student extends Person {
+public class Student extends Person implements Serializable{
+
+    private static final long serialVersionUID = 12L;
 
     @Column(name = "DATE_OF_ENROLLMENT")
-    private String dateOfEnrollment = null;
+    private String dateOfEnrollment;
 
     @ManyToOne
     private Group group;

@@ -1,8 +1,5 @@
 package project.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,10 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "GROUPS")
-@OnDelete(action = OnDeleteAction.CASCADE)
 public class Group implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1234L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,10 +17,10 @@ public class Group implements Serializable {
     private Integer id;
 
     @Column(name = "NUMBER")
-    private Integer number = null;
+    private Integer number;
 
     @Column(name = "FACULTITY")
-    private String facultity = null;
+    private String facultity;
 
     @OneToMany(mappedBy = "group", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Student> students = new ArrayList<Student>();
@@ -65,5 +61,13 @@ public class Group implements Serializable {
             sb.append(student);
         sb.append("\r\n");
         return sb.toString();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
