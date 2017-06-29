@@ -1,3 +1,5 @@
+package configuration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -22,8 +24,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 @ComponentScan("project")
-@Import(WebMVCConfiguration.class)
-public class RootConfiguration {
+//@Import(configuration.WebMVCConfiguration.class)
+public class DataAccessConfiguration {
 
     @Resource
     private Environment environment;

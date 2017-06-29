@@ -27,8 +27,10 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     public void remove(Student student) {
+        entityManager.getTransaction().begin();
         Student studentToBeRemoved = entityManager.contains(student) ? student : entityManager.merge(student);
         entityManager.remove(studentToBeRemoved);
+        entityManager.getTransaction().commit();
     }
 
     public void persist(Student student) {

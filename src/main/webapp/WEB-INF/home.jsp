@@ -26,13 +26,11 @@
     <thead>
     <tr>
         <th>Name</th>
-        <th>Date</th>
-        <th>Date2</th>
-        <th>Links</th>
+        <th>CreationDate</th>
+        <th>ModificationDate</th>
+        <th>Actions</th>
     </tr>
     </thead>
-
-    <%--TODO: fill rows dynamically--%>
     <tbody>
     <c:forEach items="${students}" var="student">
         <tr>
@@ -40,7 +38,7 @@
             <td>2017/06/16</td>
             <td>2017/06/16</td>
             <td>
-              <a href="/edit">Edit</a> / <a href="/delete/${student.id}">Delete</a>
+              <a href="/edit/${student.id}">Edit</a> / <a href="/delete/${student.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
