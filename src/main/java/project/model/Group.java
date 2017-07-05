@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -32,27 +33,29 @@ public class Group implements Serializable {
 
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     @CreatedDate
-    // @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private long createdDate;
+    @Temporal(value = TemporalType.DATE)
+    //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private Date createdDate;
 
     @Column(name = "MODIFIED_DATE")
     @LastModifiedDate
+    @Temporal(value = TemporalType.DATE)
     // @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private long modifiedDate;
+    private Date modifiedDate;
 
-    public long getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(long createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
-    public long getModifiedDate() {
+    public Date getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(long modifiedDate) {
+    public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

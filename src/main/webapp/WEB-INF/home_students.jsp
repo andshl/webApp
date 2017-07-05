@@ -35,8 +35,8 @@
     <c:forEach items="${students}" var="student">
         <tr>
             <td>${student.firstName} ${student.secondName} ${student.lastName}</td>
-            <td>2017/06/16</td>
-            <td>2017/06/16</td>
+            <td>${student.createdDate}</td>
+            <td>${student.modifiedDate}</td>
             <td>
               <a href="/home/${number}/edit?id=${student.id}">Edit</a> / <a href="/home/${number}/delete?id=${student.id}">Delete</a>
             </td>

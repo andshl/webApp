@@ -35,8 +35,8 @@
     <c:forEach items="${groups}" var="group">
         <tr>
             <td><a href="/home/${group.number}">${group.number}</a></td>
-            <td>2017/06/16</td>
-            <td>2017/06/16</td>
+            <td>${group.createdDate}</td>
+            <td>${group.modifiedDate}</td>
             <td>
               <a href="/home/edit?id=${group.id}">Edit</a> / <a href="/home/delete?id=${group.id}">Delete</a>
             </td>
