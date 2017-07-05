@@ -1,15 +1,11 @@
 package project.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@DiscriminatorValue(value = "Student")
+//@DiscriminatorValue(value = "Student")
 @Table(name = "STUDENTS")
-@OnDelete(action = OnDeleteAction.CASCADE)
 public class Student extends Person implements Serializable{
 
     private static final long serialVersionUID = 12L;
@@ -18,6 +14,7 @@ public class Student extends Person implements Serializable{
     private String dateOfEnrollment;
 
     @ManyToOne
+    @JoinColumn(name = "group_ID")
     private Group group;
 
     public Student() {}
@@ -41,9 +38,27 @@ public class Student extends Person implements Serializable{
     @Override
     public String toString() {
         return "\tStudent: " +
+                this.getId() + " " +
                 this.getSecondName() + " " +
                 this.getFirstName() + " " +
-                this.getLastName() + " enrolled on " +
+                this.getLastName() + " enrolled  on " +
                 this.dateOfEnrollment + "\r\n";
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this)
+            return true;
+        if (object == null)
+            return false;
+        if (object.getClass() != this.getClass())
+            return false;
+        Student other = (Student) object;
+        return ((other.getDateOfEnrollment().equals(this.getDateOfEnrollment())) &&
+                (other.getFirstName().equals(this.getFirstName())) &&
+                (other.getSecondName().equals(this.getSecondName())) &&
+                (other.getLastName().equals(this.getLastName())) &&
+                (other.getId().equals(this.getId())));
+
     }
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
     <title>Home</title>
@@ -16,24 +17,21 @@
     </tr>
 </table>
 <hr/>
-<form action="/save/${student.id}" method="POST">
+<form:form modelAttribute="group" action="/home/add" method="POST">
 <table class="t1">
         <tr>
-            <td>LastName:</td><td><input type='text' name='lastName' value='${student.lastName}'></td>
+            <td><form:label path="number">Number:</form:label></td>
+            <td><form:input path="number"></form:input></td>
         </tr>
         <tr>
-            <td>FirstName:</td><td><input type='text' name='firstName' value='${student.firstName}'></td>
+            <td><form:label path="facultity">Facultity:</form:label></td>
+            <td><form:input path="facultity"></form:input></td>
         </tr>
         <tr>
-        <td>SecondName:</td><td><input type='text' name='secondName' value='${student.secondName}'></td>
-        </tr>
-        <tr>
-        <td>DateOfEnrollment:</td><td><input type='text' name='dateOfEnrollment' value='${student.dateOfEnrollment}'></td>
-        </tr>
-        <tr>
-        <td><input type="submit" name="save" value="Save"></td>
+            <td><input type="submit" name="save" value="Save"></td>
+            <td><a href="/home">Cancel</a></td>
         </tr>
 </table>
-</form>
+</form:form>
 </body>
 </html>

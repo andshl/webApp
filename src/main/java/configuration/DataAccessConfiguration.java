@@ -1,8 +1,12 @@
 package configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -11,6 +15,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 /**
@@ -22,6 +27,7 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories("project/repository")
 @EnableTransactionManagement
+@EnableJpaAuditing
 @PropertySource("classpath:application.properties")
 @ComponentScan("project")
 //@Import(configuration.WebMVCConfiguration.class)
@@ -58,11 +64,17 @@ public class DataAccessConfiguration {
 
     @Bean
     @Autowired
-    public JpaTransactionManager transactionManager() {
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+
+//    @Bean
+//    public AuditingEntityListener createAuditingListener() {
+//        return new AuditingEntityListener();
+//    }
+
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
