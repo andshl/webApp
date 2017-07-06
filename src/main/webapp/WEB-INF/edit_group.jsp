@@ -12,8 +12,11 @@
 <body>
 <table style="width: 100%">
     <tr>
-        <td><span>Hello '${person.lastName}'!</span></td>
-        <td style="text-align: right"></td>
+        <td style="text-align: right">
+            <form action="/logout" method="post" id="logoutForm">
+                <input type="submit" value="Logout"/>
+            </form>
+        </td>
     </tr>
 </table>
 <hr/>
@@ -33,7 +36,7 @@
         </tr>
         <tr>
             <td><input type="submit" name="save" value="Save"></td>
-            <td><a href="/home">Cancel</a></td>
+            <td><input type="button" value="Cancel" onClick='location.href="/home/${number}"'/></td>
         </tr>
 </table>
 </form:form>

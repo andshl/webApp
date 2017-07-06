@@ -9,32 +9,15 @@
     </style>
 </head>
 <body>
-<c:url value="/j_spring_security_logout" var="logoutUrl" />
-
-	<!-- csrt for log out-->
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-	  <input type="hidden"
-		name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
-	</form>
-
 <table style="width: 100%">
-    <c:url value="/logout" var="logoutUrl" />
-    <tbody>
     <tr>
-        <td><span>Hello '${person.lastName}'!<a href="/home/add">Add</a></span></td>
-        <td style="text-align: right"></td>
-        <td>
-            	<!-- csrt for log out-->
-            	<form action="${logoutUrl}" method="post" id="logoutForm">
-            	  <input type="hidden"
-            		name="${_csrf.parameterName}"
-            		value="${_csrf.token}" />
-            		<input type="submit" value="Logout"/>
-            	</form><td>
+        <td><input type="button" value="Add" onClick='location.href="/home/add"'/></td>
+        <td style="text-align: right">
+            <form action="/logout" method="post" id="logoutForm">
+                <input type="submit" value="Logout"/>
+            </form>
+        </td>
     </tr>
-
-    </tbody>
 </table>
 
 <hr/>

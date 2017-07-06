@@ -46,7 +46,6 @@ public class IndexController {
     @RequestMapping(value = "/home/delete", method = RequestMethod.GET)
     public String deleteGroup(@RequestParam(value="id", required = true) Integer groupId) {
         groupService.removeGroup(groupId);
-        //
         return "redirect:/home";
     }
 

@@ -9,17 +9,18 @@
     </style>
 </head>
 <body>
-<c:url value="/j_spring_security_logout" var="logoutUrl" />
 
 <table style="width: 100%">
-    <tbody>
     <tr>
-        <td><span>Hello '${person.lastName}'!<a href="/home/${number}/add">Add</a></span></td>
-        <td style="text-align: right"></td>
+        <td><input type="button" value="Add" onClick='location.href="/home/${number}/add"'/></td>
+        <td><input type="button" value="Back" onClick='location.href="/home"'/></td>
+        <td style="text-align: right">
+            <form action="/logout" method="post" id="logoutForm">
+                <input type="submit" value="Logout"/>
+            </form>
+        </td>
     </tr>
-    </tbody>
 </table>
-
 <hr/>
 
 <table class="t1">

@@ -5,12 +5,11 @@
 <body>
 
 <p>
-    Please enter your name and password (this is my page):
+    Please enter your name and password:
 </p>
 
 <form name='loginForm'
 		  action="<c:url value='j_spring_security_check' />" method='POST'>
-
 		  <table>
 			<tr>
 				<td>User:</td>
@@ -26,6 +25,5 @@
 			</tr>
 		  </table>
 		</form>
-
 </body>
 </html>

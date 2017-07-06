@@ -70,12 +70,6 @@ public class DataAccessConfiguration {
         return transactionManager;
     }
 
-//    @Bean
-//    public AuditingEntityListener createAuditingListener() {
-//        return new AuditingEntityListener();
-//    }
-
-
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("db.hibernate.dialect", environment.getRequiredProperty("db.hibernate.dialect"));

@@ -10,9 +10,10 @@
 *.ctxt
 
 # Package Files #
-*.jar
+
 *.war
 *.ear
+*.jar
 *.zip
 *.tar.gz
 *.rar
