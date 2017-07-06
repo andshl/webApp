@@ -23,9 +23,7 @@ public class GroupService {
 
     @Transactional
     public Group getSingleGroupByNumber(Integer number) {
-        Group group = groupRepository.findByNumber(number);
- //       System.out.println("group with students which should be removed: " + group);
-        return group;
+        return groupRepository.findByNumber(number);
     }
 
     @Transactional
@@ -65,17 +63,7 @@ public class GroupService {
 
     @Transactional
     public void removeStudentFromGroup(Group group, Student student) {
-        System.out.println("in method removeStudentFromGroup. group: " + group);
-       // System.out.println("in method removeStudentFromGroup. student: " + student);
-        //System.out.println("in method removeStudentFromGroup. student from collection: " + group.getStudents().get(1));
-        System.out.println("in method removeStudentFromGroup. student from args: " + student);
-        if (group.getStudents().contains(student)) {
-            group.getStudents().remove(student);
-            System.out.println("student was removed from collection");
-        }
-        else {
-            System.out.println("student was not removed from collection");
-        }
+        group.getStudents().remove(student);
         groupRepository.save(group);
     }
 }

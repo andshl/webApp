@@ -10,7 +10,6 @@ import java.util.Date;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -19,13 +18,11 @@ public abstract class AbstractEntity {
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     @CreatedDate
     @Temporal(value = TemporalType.DATE)
-    //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private Date createdDate;
 
     @Column(name = "MODIFIED_DATE")
     @LastModifiedDate
     @Temporal(value = TemporalType.DATE)
-    // @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private Date modifiedDate;
 
     public Date getCreatedDate() {

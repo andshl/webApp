@@ -12,10 +12,6 @@ import project.service.StudentService;
 import java.text.ParseException;
 import java.util.List;
 
-/**
- * @author VYZH
- * @since 16.06.2017
- */
 @Controller
 public class IndexController {
 
@@ -40,6 +36,7 @@ public class IndexController {
         List<Group> groups = groupService.getAllGroups();
         mdv.addObject("groups", groups);
         mdv.setViewName("home");
+
         return mdv;
     }
 
@@ -91,8 +88,6 @@ public class IndexController {
         Group group = groupService.getSingleGroupByNumber(number);
         Student student = studentService.getSingleStudentById(studentId);
         groupService.removeStudentFromGroup(group, student);
-      //  studentService.removeStudent(studentId);
-
         return "redirect:/home/{number}";
     }
 

@@ -16,19 +16,8 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     @Transactional
-    public void removeStudent(Integer id) {
-        studentRepository.delete(id);
-    }
-
-    @Transactional
-    public List<Student> getAllStudents() {
-        return (List<Student>) studentRepository.findAll();
-    }
-
-    @Transactional
     public List<Student> getAllStudentsFromSpecifiedGroup(Group group) {
-        List<Student> students = group.getStudents();
-        return students;
+        return group.getStudents();
     }
 
     @Transactional
@@ -37,7 +26,6 @@ public class StudentService {
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setSecondName(student.getSecondName());
-
         existingStudent.setDateOfEnrollment(student.getDateOfEnrollment());
 
         studentRepository.save(existingStudent);
@@ -45,12 +33,6 @@ public class StudentService {
 
     @Transactional
     public Student getSingleStudentById(Integer id) {
-        Student student = studentRepository.findOne(id);
-        return student;
-    }
-
-    @Transactional
-    public void addStudent(Student student) {
-        studentRepository.save(student);
+        return studentRepository.findOne(id);
     }
 }

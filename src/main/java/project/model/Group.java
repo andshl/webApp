@@ -44,9 +44,7 @@ public class Group extends AbstractEntity implements Serializable {
     public void addStudent(Student student) {
         if (student.getGroup() != this)
             student.setGroup(this);
-        System.out.println("student to be added " + student);
         students.add(student);
-        System.out.println("student was added to collection");
     }
 
     public Student getStudent(int index) {
@@ -56,7 +54,7 @@ public class Group extends AbstractEntity implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Facultity: ").append(facultity).append(". Group with number: ").append(number).append(":\r\n");
+        sb.append("Facultity: ").append(facultity).append(". Group with number: ").append(number).append(".\r\n");
         for (Student student : students)
             sb.append(student);
         sb.append("\r\n");

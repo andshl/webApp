@@ -1,6 +1,5 @@
 package configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,19 +17,13 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
-/**
- * JPA-related configuration.
- *
- * @author VYZH
- * @since 16.06.2017
- */
+
 @Configuration
 @EnableJpaRepositories("project/repository")
 @EnableTransactionManagement
 @EnableJpaAuditing
 @PropertySource("classpath:application.properties")
 @ComponentScan("project")
-//@Import(configuration.WebMVCConfiguration.class)
 public class DataAccessConfiguration {
 
     @Resource
@@ -63,7 +56,6 @@ public class DataAccessConfiguration {
     }
 
     @Bean
-    @Autowired
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
@@ -78,5 +70,4 @@ public class DataAccessConfiguration {
 
         return properties;
     }
-
 }
