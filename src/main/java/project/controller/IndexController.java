@@ -7,8 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 import project.model.Group;
 import project.model.Student;
 import project.service.GroupService;
-import project.service.StudentService2;
+import project.service.StudentService;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    private StudentService2 studentService;
+    private StudentService studentService;
 
     @Autowired
     private GroupService groupService;
@@ -29,10 +30,13 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
 
     @RequestMapping("/home")
     public ModelAndView showHome(ModelAndView mdv) {
-        List<Student> students = studentService.getAllStudents();
         List<Group> groups = groupService.getAllGroups();
         mdv.addObject("groups", groups);
         mdv.setViewName("home");
@@ -103,7 +107,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/home/{number}/edit", method = RequestMethod.POST)
-    public String saveEditStudent(@PathVariable("number") Integer number, @ModelAttribute("student") Student student, @RequestParam(value = "id", required = true) Integer id) {
+    public String saveEditStudent(@PathVariable("number") Integer number, @ModelAttribute("student") Student student, @RequestParam(value = "id", required = true) Integer id) throws ParseException {
         studentService.editStudent(student);
         return "redirect:/home/{number}";
     }

@@ -13,7 +13,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER");
     }
 
     @Override
@@ -22,16 +22,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index").permitAll()
-                .antMatchers("/home").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/delete").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/edit").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/home", "/home/*/").hasRole("USER")
+                .antMatchers("/home/delete*", "/home/edit*", "/home/add*").hasRole("ADMIN")
+                .antMatchers("/home/*/delete*", "/home/*/edit*", "/home/*/add*").hasRole("ADMIN")
                 .and()
-                .formLogin();
-//                .loginPage("/login")
-//                .loginProcessingUrl("/j_spring_security_check")
-//                .failureUrl("/login?error")
-//                .usernameParameter("j_username")
-//                .passwordParameter("j_password");
-
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .loginProcessingUrl("/j_spring_security_check")
+                .usernameParameter("username")
+                .passwordParameter("password");
+        http.logout().permitAll().logoutUrl("/logout").logoutSuccessUrl("/index").invalidateHttpSession(true);
     }
 }

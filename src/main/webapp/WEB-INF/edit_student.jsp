@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td><input type="submit" name="save" value="Save"></td>
-            <td><a href="/home">Cancel</a></td>
+            <td><a href="/home/${number}">Cancel</a></td>
         </tr>
 </table>
 </form:form>

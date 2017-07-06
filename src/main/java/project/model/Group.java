@@ -1,26 +1,16 @@
 package project.model;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 @Table(name = "GROUPS")
-public class Group implements Serializable {
+public class Group extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1234L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
 
     @Column(name = "NUMBER")
     private Integer number;
@@ -30,34 +20,6 @@ public class Group implements Serializable {
 
     @OneToMany(mappedBy = "group", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Student> students = new ArrayList<Student>();
-
-    @Column(name = "CREATED_DATE", nullable = false, updatable = false)
-    @CreatedDate
-    @Temporal(value = TemporalType.DATE)
-    //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private Date createdDate;
-
-    @Column(name = "MODIFIED_DATE")
-    @LastModifiedDate
-    @Temporal(value = TemporalType.DATE)
-    // @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private Date modifiedDate;
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
 
     public Integer getNumber() {
         return number;
@@ -73,14 +35,6 @@ public class Group implements Serializable {
 
     public void setFacultity(String facultity) {
         this.facultity = facultity;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public List<Student> getStudents() {

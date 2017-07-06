@@ -4,9 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-//@DiscriminatorValue(value = "Student")
 @Table(name = "STUDENTS")
-public class Student extends Person implements Serializable{
+public class Student extends Person implements Serializable {
 
     private static final long serialVersionUID = 12L;
 
@@ -17,7 +16,8 @@ public class Student extends Person implements Serializable{
     @JoinColumn(name = "group_ID")
     private Group group;
 
-    public Student() {}
+    public Student() {
+    }
 
     public String getDateOfEnrollment() {
         return dateOfEnrollment;
@@ -42,7 +42,7 @@ public class Student extends Person implements Serializable{
                 this.getSecondName() + " " +
                 this.getFirstName() + " " +
                 this.getLastName() + " enrolled  on " +
-                this.dateOfEnrollment + "\r\n";
+                this.getDateOfEnrollment() + "\r\n";
     }
 
     @Override
