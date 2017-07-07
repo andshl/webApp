@@ -9,7 +9,7 @@
 </p>
 
 <form name='loginForm'
-		  action="<c:url value='j_spring_security_check' />" method='POST'>
+		  action="<c:url value='/j_spring_security_check' />" method='POST'>
 		  <table>
 			<tr>
 				<td>User:</td>
@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td colspan='2'><input name="submit" type="submit"
-					value="submit" /></td>
+					value="Login" /></td>
 			</tr>
 		  </table>
 		</form>

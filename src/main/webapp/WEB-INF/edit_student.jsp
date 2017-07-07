@@ -5,8 +5,8 @@
 <head>
     <title>Home</title>
     <style>
-        .t1 { width: 70%; border: 1px solid black; border-collapse: collapse }
-        .t1 td, .t1 th { padding: 5px; border: 1px solid black }
+        .t1 { width: 100%; border: 1px solid black; border-collapse: collapse }
+        .t1 td, .t1 th { padding: 5px; border: 1px solid black; width: 50%}
     </style>
 </head>
 <body>
@@ -23,27 +23,27 @@
 <form:form modelAttribute="student" action="/home/${number}/edit?id=${student.id}" method="POST">
 <table class="t1">
         <tr>
-            <td><form:label path="id">Id:</form:label></td>
+            <td style="text-align: right"><form:label path="id">Id:</form:label></td>
             <td><form:input path="id" disabled="true"></form:input></td>
         </tr>
         <tr>
-            <td><form:label path="lastName">LastName:</form:label></td>
+            <td style="text-align: right"><form:label path="lastName">LastName:</form:label></td>
             <td><form:input path="lastName"></form:input></td>
         </tr>
         <tr>
-            <td><form:label path="firstName">FirstName:</form:label></td>
+            <td style="text-align: right"><form:label path="firstName">FirstName:</form:label></td>
             <td><form:input path="firstName"></form:input></td>
         </tr>
         <tr>
-            <td><form:label path="secondName">SecondName:</form:label></td>
+            <td style="text-align: right"><form:label path="secondName">SecondName:</form:label></td>
             <td><form:input path="secondName"></form:input></td>
         </tr>
         <tr>
-            <td><form:label path="dateOfEnrollment">DateOfEnrollment:</form:label></td>
+            <td style="text-align: right"><form:label path="dateOfEnrollment">DateOfEnrollment:</form:label></td>
             <td><form:input path="dateOfEnrollment"></form:input></td>
         </tr>
         <tr>
-            <td><input type="submit" name="save" value="Save"></td>
+            <td style="text-align: right"><input type="submit" name="save" value="Save"></td>
             <td><input type="button" value="Cancel" onClick='location.href="/home/${number}"'/></td>
         </tr>
 </table>

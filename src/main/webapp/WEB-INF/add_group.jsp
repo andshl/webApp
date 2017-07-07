@@ -5,8 +5,8 @@
 <head>
     <title>Home</title>
     <style>
-        .t1 { width: 70%; border: 1px solid black; border-collapse: collapse }
-        .t1 td, .t1 th { padding: 5px; border: 1px solid black }
+        .t1 { width: 100%; border: 1px solid black; border-collapse: collapse }
+        .t1 td, .t1 th { padding: 5px; border: 1px solid black; width: 50%}
     </style>
 </head>
 <body>
@@ -23,15 +23,15 @@
 <form:form modelAttribute="group" action="/home/add" method="POST">
 <table class="t1">
         <tr>
-            <td><form:label path="number">Number:</form:label></td>
+            <td style="text-align: right"><form:label path="number">Number:</form:label></td>
             <td><form:input path="number"></form:input></td>
         </tr>
         <tr>
-            <td><form:label path="facultity">Facultity:</form:label></td>
+            <td style="text-align: right"><form:label path="facultity">Facultity:</form:label></td>
             <td><form:input path="facultity"></form:input></td>
         </tr>
         <tr>
-            <td><input type="submit" name="save" value="Save"></td>
+            <td style="text-align: right"><input type="submit" name="save" value="Save"></td>
             <td><input type="button" value="Cancel" onClick='location.href="/home"'/></td>
         </tr>
 </table>

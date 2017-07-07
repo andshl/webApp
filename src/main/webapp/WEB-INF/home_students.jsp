@@ -12,8 +12,8 @@
 
 <table style="width: 100%">
     <tr>
-        <td><input type="button" value="Add" onClick='location.href="/home/${number}/add"'/></td>
-        <td><input type="button" value="Back" onClick='location.href="/home"'/></td>
+        <td><input type="button" value="Add" onClick='location.href="/home/${number}/add"'/>
+        <input type="button" value="Back" onClick='location.href="/home"'/></td>
         <td style="text-align: right">
             <form action="/logout" method="post" id="logoutForm">
                 <input type="submit" value="Logout"/>
