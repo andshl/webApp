@@ -34,7 +34,7 @@
     </thead>
     <tbody>
     <c:forEach items="${students}" var="student">
-        <tr>
+        <tr style="text-align: center">
             <td>${student.firstName} ${student.secondName} ${student.lastName}</td>
             <td>${student.createdDate}</td>
             <td>${student.modifiedDate}</td>

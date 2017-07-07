@@ -33,7 +33,7 @@
     </thead>
     <tbody>
     <c:forEach items="${groups}" var="group">
-        <tr>
+        <tr style="text-align: center">
             <td><a href="/home/${group.number}">${group.number}</a></td>
             <td>${group.createdDate}</td>
             <td>${group.modifiedDate}</td>
