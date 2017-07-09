@@ -1,5 +1,8 @@
 package configuration;
 
+import org.h2.jdbcx.JdbcConnectionPool;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +22,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories("project/repository")
+@EnableJpaRepositories("project.repository")
 @EnableTransactionManagement
 @EnableJpaAuditing
 @PropertySource("classpath:application.properties")
@@ -29,16 +32,26 @@ public class DataAccessConfiguration {
     @Resource
     private Environment environment;
 
+    @Value("${db.url}") String dbUrl;
+    @Value("${db.username}") String username;
+    @Value("${db.password}") String password;
+
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//
+//        dataSource.setDriverClassName(environment.getRequiredProperty("db.driver"));
+//        dataSource.setUrl(environment.getRequiredProperty("db.url"));
+//        dataSource.setUsername(environment.getRequiredProperty("db.username"));
+//        dataSource.setPassword(environment.getRequiredProperty("db.password"));
+//
+//        return dataSource;
+//    }
+
+    // TEST MODE:
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        dataSource.setDriverClassName(environment.getRequiredProperty("db.driver"));
-        dataSource.setUrl(environment.getRequiredProperty("db.url"));
-        dataSource.setUsername(environment.getRequiredProperty("db.username"));
-        dataSource.setPassword(environment.getRequiredProperty("db.password"));
-
-        return dataSource;
+        return JdbcConnectionPool.create(dbUrl, username, password);
     }
 
     @Bean
