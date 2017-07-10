@@ -1,5 +1,7 @@
 package project.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,11 +11,15 @@ import project.model.Student;
 import project.service.GroupService;
 import project.service.StudentService;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
 
 @Controller
 public class IndexController {
+
+    private static final Logger LOG =
+            LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private StudentService studentService;
@@ -32,11 +38,11 @@ public class IndexController {
     }
 
     @RequestMapping("/home")
-    public ModelAndView showHome(ModelAndView mdv) {
+    public ModelAndView showHome(ModelAndView mdv, Principal principal) {
+        LOG.info("User {} browsing page /home", principal);
         List<Group> groups = groupService.getAllGroups();
         mdv.addObject("groups", groups);
         mdv.setViewName("home");
-
         return mdv;
     }
 
