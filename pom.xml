@@ -16,7 +16,7 @@
         <cglib>3.2.5</cglib>
         <spring>4.3.9.RELEASE</spring>
         <spring.data>1.11.4.RELEASE</spring.data>
-        <spring.security>4.2.3.RELEASE</spring.security>
+        <spring.security>5.2.1.RELEASE</spring.security>
         <mysql>5.1.29</mysql>
         <slf4j>1.7.25</slf4j>
         <javax.servlet>3.1.0</javax.servlet>
